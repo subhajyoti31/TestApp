@@ -1,0 +1,24 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: subha-demo-app
+  name: subha-demo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: subha-demo-app
+  template:
+    metadata:
+      labels:  
+        run: subha-demo-app
+    spec:
+      containers:
+      - name: subha-demo-app
+        image: tanzuacrdemo.azurecr.io/manutdtest:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: acr-subha  
